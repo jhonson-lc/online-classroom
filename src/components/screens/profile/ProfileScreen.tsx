@@ -6,7 +6,7 @@ import { Button } from "../../common/Button/Button";
 import { MainHeading } from "../../common/MainHeading";
 
 import { api } from "@/utils/api";
-import { FormGroup } from "@/ui/form/FormGroup";
+import { FormGroup } from "@/components/common/form/FormGroup";
 
 export const ProfileScreen = () => {
   const { dismiss, show, isDisplayed } = useDismissible();
