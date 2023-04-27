@@ -1,28 +1,19 @@
-import { User } from "@prisma/client";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
-const filterUserForClient = (user: User) => {
-  return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    image: user.image,
-  };
-};
-
 export const user = createTRPCRouter({
-  me: publicProcedure.input(z.object({ id: z.string() })).query(async ({ input, ctx }) => {
-    const { id } = input;
+  getUser: publicProcedure.query(async ({ ctx }) => {
+    const userId = ctx.session?.user?.id;
     const user = await ctx.prisma.user.findUnique({
-      where: { id },
+      where: {
+        id: userId,
+      },
+      include: {
+        enrolledIn: true,
+      },
     });
-
-    if (!user) {
-      throw new Error("No se encontró el usuario, por favor intente de nuevo");
-    }
-    return filterUserForClient(user);
+    return user;
   }),
 
   updateUser: publicProcedure
@@ -44,6 +35,26 @@ export const user = createTRPCRouter({
           email,
         },
       });
-      return filterUserForClient(user);
+      return user;
+    }),
+
+  updateDisplayName: publicProcedure
+    .input(
+      z.object({
+        displayName: z.string(),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { displayName } = input;
+
+      const userId = ctx.session?.user?.id;
+
+      const user = await ctx.prisma.user.update({
+        where: { id: userId },
+        data: {
+          displayName,
+        },
+      });
+      return user;
     }),
 });
