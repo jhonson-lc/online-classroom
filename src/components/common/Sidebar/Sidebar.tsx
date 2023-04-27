@@ -1,44 +1,36 @@
 import { signOut } from "next-auth/react";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
 
-import { ILink } from "./types";
+import Logo from "../Header/components/Logo";
+
+import { LOGGED_IN_LINKS } from "./constants";
 
 interface Props {
-  listOfLinks: ILink[];
+  role: string;
 }
 
 const handleClick = async () => {
   signOut();
 };
 
-const Sidebar: React.FC<Props> = ({ listOfLinks }) => {
-  const router = useRouter();
-  const { id, competition } = router.query;
+const Sidebar: React.FC<Props> = ({ role }) => {
+  const links = LOGGED_IN_LINKS[role];
+
+  if (!links) return null;
 
   return (
     <nav className="relative flex h-full min-h-[110vh] flex-col justify-start border-2 bg-white p-2">
-      <h2 className="border-b-2 py-6 pl-6 text-[34px] font-[900] text-neutral-900">
-        Virtual Campus
-      </h2>
+      <div className="border-b-2 py-6 pl-6 text-[24px] font-[900] text-neutral-900">
+        <Logo />
+      </div>
       <ul className="flex flex-1 flex-col gap-1 py-6">
-        {listOfLinks.map((link) => {
+        {links.map((link) => {
           const Icon = link.icon;
           return (
             <div key={link.id}>
               <div className="rounded-md border-none">
-                <NextLink
-                  legacyBehavior
-                  passHref
-                  href={
-                    link.href
-                      ? link.id === "competitions" || link.id === "competiciones"
-                        ? `${link.href}`
-                        : `/${id}/competencia/${competition}${link.href}`
-                      : ""
-                  }
-                >
+                <NextLink legacyBehavior passHref href={link.href}>
                   <a className="flex w-full items-center justify-start gap-4 p-4">
                     <Icon />
                     <span className="text-sm font-medium text-gray-900">{link.name}</span>
