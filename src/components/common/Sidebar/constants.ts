@@ -26,13 +26,13 @@ export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
       id: "general",
       name: "General",
       icon: RiHomeLine,
-      href: `/`,
+      href: `/dashboard`,
     },
     {
       id: "my-classes",
       name: "Mis clases",
       icon: MdOutlineClass,
-      href: "/my-classes",
+      href: "/classrooms",
     },
     {
       id: "courses",
@@ -47,16 +47,16 @@ export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
       href: "/messages",
     },
     {
-      id: "instractors",
-      name: "Instructores",
+      id: "teachers",
+      name: "Profesores",
       icon: BsPeople,
-      href: "/instractors",
+      href: "/teachers",
     },
     {
       id: "reportes",
       name: "Reportes",
       icon: BsFiles,
-      href: "/reports",
+      href: "/classrooms",
     },
     {
       id: "settings",
