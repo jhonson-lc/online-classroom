@@ -11,7 +11,7 @@ export const HeaderLayout: React.FC<Props> = ({ children }) => {
     <>
       <Header />
 
-      <main className={"container mx-auto flex min-h-screen flex-col"}>{children}</main>
+      <main className={"container mx-auto flex h-[80vh] flex-col"}>{children}</main>
     </>
   );
 };

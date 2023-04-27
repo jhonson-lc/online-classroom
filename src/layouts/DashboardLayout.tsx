@@ -1,13 +1,8 @@
-import Head from "next/head";
 import React from "react";
-import { useSession } from "next-auth/react";
 
 import { Header } from "@/components/common/Header/Header";
 import Sidebar from "@/components/common/Sidebar/Sidebar";
-import {
-  LINKS_SIDEBAR_STUDENT,
-  LINKS_SIDEBAR_TEACHER,
-} from "@/components/common/Sidebar/constants";
+import { useSession } from "@/libs/useSession";
 
 interface Props {
   children: React.ReactNode;
@@ -15,26 +10,17 @@ interface Props {
 
 const DashboardLayout: React.FC<Props> = ({ children }) => {
   const session = useSession();
-  const userRole = session.data?.user.role ?? "student";
+  const userRole = session.data?.user.role;
 
   return (
     <>
-      <Head>
-        <title>Admin - </title>
-        <meta content="Admin" name="description" />
-        <link href="/favicon.ico" rel="icon" />
-      </Head>
       <main className="flex w-full">
         <section className="w-full max-w-[17%]">
-          {userRole === "teacher" ? (
-            <Sidebar listOfLinks={LINKS_SIDEBAR_TEACHER} />
-          ) : (
-            <Sidebar listOfLinks={LINKS_SIDEBAR_STUDENT} />
-          )}
+          {userRole === "teacher" ? <Sidebar role="teacher" /> : <Sidebar role="student" />}
         </section>
         <section className="flex w-full flex-col">
           <Header />
-          <div className="h-full w-full">{children}</div>
+          <div className="h-full w-full p-6">{children}</div>
         </section>
       </main>
     </>
