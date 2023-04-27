@@ -21,6 +21,7 @@ const server = z.object({
   DISCORD_CLIENT_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  NEXT_PUBLIC_MOCK_NEXT_AUTH: z.string().optional(),
 });
 
 /**
@@ -50,6 +51,7 @@ const processEnv = {
   DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  NEXT_PUBLIC_MOCK_NEXT_AUTH: process.env.NEXT_PUBLIC_MOCK_NEXT_AUTH,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
