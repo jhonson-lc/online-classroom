@@ -10,7 +10,7 @@ const Logo = () => {
         session.data ? (session.data?.user?.role === "teacher" ? "/classrooms" : "/dashboard") : "/"
       }
     >
-      WDJ Classroom
+      Virtual Campus
     </Link>
   );
 };
