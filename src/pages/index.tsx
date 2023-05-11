@@ -55,6 +55,7 @@ export default Home;
 
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
+  console.log(sessionData);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
@@ -62,7 +63,7 @@ const AuthShowcase: React.FC = () => {
         {sessionData?.user && <span>Logged in as {sessionData.user?.name}</span>}
       </p>
       <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        className="transition rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline hover:bg-white/20"
         onClick={sessionData?.user ? () => signOut() : () => signIn()}
       >
         {sessionData?.user ? "Sign out" : "Sign in"}

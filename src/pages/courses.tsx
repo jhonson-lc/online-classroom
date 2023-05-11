@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import ClassroomsScreen from "@/components/screens/browse-classrooms/BrowseClassroomsScreen";
 import DashboardLayout from "@/layouts/DashboardLayout";
+import { BrowseClassroomsScreen } from "@/components/screens/browse-classrooms/BrowseClassroomsScreen";
 
 const Courses: NextPage = () => {
   return (
@@ -16,7 +16,7 @@ const Courses: NextPage = () => {
       </Head>
 
       <DashboardLayout>
-        <ClassroomsScreen />
+        <BrowseClassroomsScreen />
       </DashboardLayout>
     </>
   );

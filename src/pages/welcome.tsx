@@ -85,7 +85,6 @@ export default Welcome;
 
 export async function getServerSideProps(context: any) {
   const session = await UnstableGetServerSession(context);
-  const user = await prisma.user.findUnique({ where: { id: session?.user?.id } });
 
   if (!session?.user) {
     return {
@@ -94,7 +93,7 @@ export async function getServerSideProps(context: any) {
         permanent: false,
       },
     };
-  } else if (user?.role) {
+  } else if (session.user?.role) {
     return {
       redirect: {
         destination: "/dashboard",
