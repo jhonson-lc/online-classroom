@@ -1,6 +1,15 @@
 import { Roles } from "../server/utils/constants";
 
-const mockUsers = {
+const mockUsers: Record<
+  string,
+  {
+    id: string;
+    role: Roles;
+    name: string;
+    email: string;
+    image: string | null;
+  } | null
+> = {
   teacher: {
     id: "al814zcy80074hloomogrg1mv",
     role: Roles.Teacher,
@@ -18,6 +27,6 @@ const mockUsers = {
   unauthenticated: null,
 };
 
-export const getMockUser = (role) => {
+export const getMockUser = (role: string) => {
   return mockUsers[role];
 };
