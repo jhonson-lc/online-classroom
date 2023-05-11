@@ -17,13 +17,13 @@ export const Header: React.FC = () => {
   return (
     <header className="bg-gray-900 text-white">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="flex h-24 items-center justify-end">
+        <div className="flex h-[100px] items-center justify-end">
           <div className="inset-y-0 left-0 flex items-center sm:hidden">
             <MobileMenuButton setIsMobileMenuOpen={setIsMobileMenuOpen} />
           </div>
           <div className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {isLoggedIn ? (
-              <LoggedInSection image={userMetadata?.image} />
+              <LoggedInSection image={userMetadata?.image ?? ""} />
             ) : (
               <LoggedOutSection signIn={signIn} />
             )}

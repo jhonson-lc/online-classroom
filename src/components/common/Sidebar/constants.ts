@@ -9,16 +9,22 @@ import { ILink } from "./types";
 export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
   teacher: [
     {
-      id: "general",
-      name: "General",
-      icon: RiHomeLine,
-      href: "/",
-    },
-    {
       id: "my-classes",
       name: "Mis clases",
       icon: MdOutlineClass,
-      href: "/my-classes",
+      href: "/classrooms",
+    },
+    {
+      id: "messages",
+      name: "Mensajes",
+      icon: FiMessageSquare,
+      href: "/messages",
+    },
+    {
+      id: "settings",
+      name: "Configuración",
+      icon: TbSettings2,
+      href: "/profile",
     },
   ],
   student: [
