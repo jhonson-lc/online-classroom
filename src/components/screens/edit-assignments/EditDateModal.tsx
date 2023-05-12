@@ -56,22 +56,31 @@ export const EditDateModal = ({
 
   return (
     <Modal
-      description="Enter the information for your new assignment."
+      description="Ingresa la información de tu nueva tarea."
       handleCancel={handleCancel}
       isOpen={isOpen}
-      title="Create Assignment"
+      title="Crear tarea"
     >
       <ModalForm onSubmit={onSubmit}>
-        <FormGroup error={errors.dueDate && "Due date is required"} label="Due Date" name="dueDate">
-          <input id="dueDate" type="date" {...register("dueDate", { required: true })} />
+        <FormGroup
+          error={errors.dueDate && "Fecha límite es requerida"}
+          label="Fecha Límite"
+          name="dueDate"
+        >
+          <input
+            className="mb-2 rounded-md bg-slate-100 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+            id="dueDate"
+            type="date"
+            {...register("dueDate", { required: true })}
+          />
         </FormGroup>
 
         <ModalActions>
           <Button type="button" variant={Variant.Secondary} onClick={handleCancel}>
-            Cancel
+            Cancelar
           </Button>
           <Button type="submit" variant={Variant.Primary} onClick={onSubmit}>
-            Update
+            Actualizar
           </Button>
         </ModalActions>
       </ModalForm>
