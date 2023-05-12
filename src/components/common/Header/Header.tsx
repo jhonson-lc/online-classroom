@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
   const userMetadata = session.data?.user;
 
   return (
-    <header className="bg-gray-900 text-white">
+    <header className="bg-white text-primary">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="flex h-[100px] items-center justify-end">
           <div className="inset-y-0 left-0 flex items-center sm:hidden">

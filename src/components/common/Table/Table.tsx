@@ -2,13 +2,13 @@ import React, { ReactNode } from "react";
 
 export const Table = ({ headers, rows }: { headers: string[]; rows: ReactNode[][] }) => {
   return (
-    <table className="min-w-full table-fixed divide-y divide-gray-200 dark:divide-gray-400">
-      <thead className="bg-gray-100 dark:bg-gray-700">
+    <table className="min-w-full table-fixed divide-y divide-gray-200">
+      <thead className="bg-primary/10">
         <tr>
           {headers.map((header) => (
             <th
               key={header}
-              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-200"
+              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700"
               scope="col"
             >
               {header}
@@ -17,15 +17,12 @@ export const Table = ({ headers, rows }: { headers: string[]; rows: ReactNode[][
         </tr>
       </thead>
 
-      <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-500 dark:bg-gray-800">
+      <tbody className="divide-y divide-gray-200 bg-white">
         {rows.map((row, rowIndex) => {
           return (
-            <tr key={rowIndex} className="hover:bg-blue-50 dark:hover:bg-gray-700">
+            <tr key={rowIndex}>
               {row.map((column, columnIndex) => (
-                <td
-                  key={columnIndex}
-                  className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white"
-                >
+                <td key={columnIndex} className="px-6 py-4 text-sm font-medium text-gray-900">
                   {column}
                 </td>
               ))}
