@@ -6,13 +6,13 @@ export enum TabName {
   Submissions,
 }
 
-interface BearState {
+interface ClassroomState {
   tabAtom: TabName;
   selectedTab: TabName;
   setSelectedTab: (tab: TabName) => void;
 }
 
-export const useClassroomStore = create<BearState>()((set) => ({
+export const useClassroomStore = create<ClassroomState>()((set) => ({
   tabAtom: TabName.Assignment,
   selectedTab: TabName.Assignment,
   setSelectedTab: (tab: TabName) => set({ selectedTab: tab }),
