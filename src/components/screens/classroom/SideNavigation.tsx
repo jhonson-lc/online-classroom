@@ -62,8 +62,10 @@ export const SideNavigation = () => {
           <li key={link.name} className="w-full" onClick={() => setSelectedTab(link.tab)}>
             <div
               className={classNames(
-                "relative flex w-full cursor-pointer items-center justify-center rounded-lg p-2 text-base font-normal hover:bg-gray-100",
-                link.tab === selectedTab ? "bg-slate-100 text-blue-700" : "text-gray-900",
+                "relative flex w-full cursor-pointer items-center justify-center rounded-lg p-2 text-base font-normal hover:bg-secondary/5",
+                link.tab === selectedTab
+                  ? "bg-secondary/10 text-secondary"
+                  : "bg-secondary/0 text-gray-900",
               )}
             >
               {link.icon}

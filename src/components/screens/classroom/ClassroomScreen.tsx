@@ -74,9 +74,9 @@ export const ClassroomScreen = ({ classroomId }: { classroomId: string }) => {
     <>
       <MainHeading title={classroom?.name ?? "loading..."}>
         {hasAdminAccess && (
-          <button className="link inline-flex items-center" onClick={openEditClassroomModal}>
+          <Button className="link inline-flex items-center" onClick={openEditClassroomModal}>
             <PencilSquare /> Editar
-          </button>
+          </Button>
         )}
 
         {showUnenroll && (

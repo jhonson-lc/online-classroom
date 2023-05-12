@@ -74,7 +74,7 @@ export const AssignmentScreen = ({ assignmentId }: { assignmentId: string }) => 
 
           <div className="flex justify-end place-self-end">
             <form className="text-white" onSubmit={uploadAssignment}>
-              <label htmlFor="file-upload">Upload Assignment</label>
+              <label htmlFor="file-upload">Cargar archivo</label>
               <input
                 ref={fileRef}
                 className="ml-4 text-white"
@@ -84,7 +84,7 @@ export const AssignmentScreen = ({ assignmentId }: { assignmentId: string }) => 
               />
               {file && (
                 <Button className="ml-4" type="submit" variant={Variant.Primary}>
-                  Upload
+                  Cargar
                 </Button>
               )}
             </form>

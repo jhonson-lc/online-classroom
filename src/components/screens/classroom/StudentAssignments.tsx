@@ -35,13 +35,13 @@ export const StudentAssignments = ({
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mt-6 flex flex-col gap-4">
       <div className="flex items-center gap-8">
-        <h2 className="text-2xl">Your Assignments ({totalAssignments} total)</h2>
+        <h2 className="text-2xl">Tus tareas ({totalAssignments} total)</h2>
       </div>
       <div className="overflow-x-auto">
         <Table
-          headers={["Number", "Grade", "Name", "Due Date", "Actions"]}
+          headers={["Número", "Grade", "Name", "Due Date", "Actions"]}
           rows={assignments.map((assignment, idx) => [
             assignment.number,
             getSubmission(assignment.id)?.grade ?? "N/A",

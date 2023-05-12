@@ -29,12 +29,15 @@ const GradeEditable = ({ submission, onUpdate }: { submission: any; onUpdate: an
     <>
       {isEditing ? (
         <form onSubmit={handleSubmit(handleGradeSave)}>
-          <FormGroup label="Grade" name="grade">
-            <span className="flex gap-2">
-              <input id="grade" {...register("grade", { required: true, valueAsNumber: true })} />
-
+          <FormGroup label="Nota" name="grade">
+            <span className="flex items-start gap-2">
+              <input
+                className="focus:ring-primary-500 mb-2 rounded-md bg-slate-100 p-2 focus:border-transparent focus:outline-none focus:ring-2"
+                id="grade"
+                {...register("grade", { required: true, valueAsNumber: true })}
+              />
               <Button type="submit" variant={Variant.Primary}>
-                Save
+                Guardar
               </Button>
             </span>
           </FormGroup>
@@ -53,10 +56,10 @@ export const SubmissionsSection = ({ classroomId }: { classroomId: string }) => 
     classroomId,
   });
   return (
-    <section>
+    <section className="mt-6">
       {submissionsQuery.data && (
         <Table
-          headers={["Student", "Grade", "Assignment Name", "Assignment Number", "actions"]}
+          headers={["Estudiante", "Nota", "Tarea", "Número de tarea", "Acciones"]}
           rows={submissionsQuery.data.map((submission) => [
             submission.studentName,
             <>
@@ -73,7 +76,7 @@ export const SubmissionsSection = ({ classroomId }: { classroomId: string }) => 
                 target="_blank"
               >
                 <DownloadIcon />
-                Download
+                Descargar
               </a>
             </>,
           ])}

@@ -19,9 +19,9 @@ export const Students = ({
   const totalStudents = students.length;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mt-6 flex flex-col gap-4">
       <div className="flex items-center gap-8">
-        <h3 className="text-2xl">{totalStudents} Student(s) Enrolled</h3>
+        <h3 className="text-md">{totalStudents} Estudiantes(s) inscritos</h3>
       </div>
       <div className="overflow-x-auto">
         <Table

@@ -19,16 +19,16 @@ export const TeacherAssignments = ({
   const totalAssignments = assignments.length;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mt-6 flex flex-col gap-4">
       <div className="flex items-center gap-8">
-        <h2 className="text-2xl">Your Assignments ({totalAssignments} total)</h2>
+        <h2 className="text-md">Tus tareas ({totalAssignments} total)</h2>
         <Button variant={Variant.Primary} onClick={openAssignmentModal}>
-          Create an Assignment
+          Crear tarea
         </Button>
       </div>
       <div className="overflow-x-auto">
         <Table
-          headers={["Number", "Name", "Due Date", "Actions"]}
+          headers={["Número", "Nombre", "Fecha Límite", "Acciones"]}
           rows={assignments.map((assignment, idx) => [
             assignment.number,
             assignment.name,
@@ -38,10 +38,10 @@ export const TeacherAssignments = ({
             (
               <span className="flex gap-4">
                 <Link
-                  className="link flex items-center gap-1"
+                  className="link inline-flex items-center gap-1"
                   href={`/classrooms/${classroomId}/assignments/${assignment.id}/edit`}
                 >
-                  <PencilSquare /> Edit
+                  <PencilSquare /> Editar
                 </Link>
               </span>
             ) as ReactNode,

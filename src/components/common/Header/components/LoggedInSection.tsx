@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 import { useClickOutside } from "../hooks/useClickOutside";
-import { BellIcon } from "../../Icons/BellIcon";
+// import { BellIcon } from "../../Icons/BellIcon";
 
 import AccountMenu from "./AccountMenu";
 
@@ -37,18 +37,20 @@ export const LoggedInSection = ({ image }: { image: string }) => {
     <>
       <div className="mr-3 text-white" />
 
-      <button
+      {/* <button
         className="rounded-full p-1 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
         type="button"
       >
         <span className="sr-only">View notifications</span>
         <BellIcon />
-      </button>
+      </button> */}
 
       <div className="relative ml-3">
         <div className="flex items-center justify-between">
-          <div className="pr-4">{displayName}</div>
-
+          <div className="flex flex-col items-start justify-between text-primary">
+            <span className="pr-4 text-xs font-semibold">{displayName}</span>
+            <span className="pr-4 text-[10px] font-medium capitalize">{user?.role}</span>
+          </div>
           <button
             ref={openAccountMenuButtonRef}
             aria-expanded="false"
@@ -59,7 +61,6 @@ export const LoggedInSection = ({ image }: { image: string }) => {
             onClick={toggleAccountMenu}
           >
             <span className="sr-only">Open user menu</span>
-
             <Image
               alt=""
               className="h-8 w-8 rounded-full"
