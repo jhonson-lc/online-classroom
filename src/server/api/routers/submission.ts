@@ -3,6 +3,22 @@ import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
+import { AWS } from "@/libs/aws";
+
+export const BUCKET_NAME = "classroomvirtualuta";
+
+export const getObjectKey = ({
+  studentId,
+  submissionId,
+}: {
+  studentId: string;
+  submissionId: string;
+}) => {
+  return `submissions/${studentId}/${submissionId}`;
+};
+
+const s3 = new AWS.S3();
+
 export const submission = createTRPCRouter({
   updateGrade: publicProcedure
     .input(
@@ -72,7 +88,7 @@ export const submission = createTRPCRouter({
           assignmentId: assignment.id,
           assignmentNumber: assignment.number,
           studentId: submission.studentId,
-          studentName: submission.student.displayName,
+          studentName: submission.student.displayName ?? submission.student.name,
           grade: submission.grade,
         })),
       );
@@ -129,7 +145,7 @@ export const submission = createTRPCRouter({
       const submission = await ctx.prisma.submission.create({
         data: {
           filename: input.filename,
-          studentId,
+          studentId: studentId as string,
           assignmentId: input.assignmentId,
         },
       });
@@ -139,7 +155,7 @@ export const submission = createTRPCRouter({
           {
             Fields: {
               key: getObjectKey({
-                studentId,
+                studentId: studentId as string,
                 submissionId: submission.id,
               }),
             },
