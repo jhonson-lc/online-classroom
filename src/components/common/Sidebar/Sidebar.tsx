@@ -9,6 +9,8 @@ import { useComponentsStore } from "../store";
 
 import { LOGGED_IN_LINKS } from "./constants";
 
+import { useSession } from "@/libs/useSession";
+
 interface Props {
   role: string;
 }
@@ -17,6 +19,7 @@ const Sidebar: React.FC<Props> = ({ role }) => {
   const showTitles = useComponentsStore((state) => state.showTitles);
   const setShowTitles = useComponentsStore((state) => state.setShowTitles);
   const links = LOGGED_IN_LINKS[role];
+  const session = useSession();
 
   if (!links) return null;
 
@@ -48,7 +51,18 @@ const Sidebar: React.FC<Props> = ({ role }) => {
               <Logo />
             </motion.div>
           ) : (
-            <span className="text-2xl">V</span>
+            <NextLink
+              className="cursor-pointer text-2xl"
+              href={
+                session.data
+                  ? session.data?.user?.role === "teacher"
+                    ? "/classrooms"
+                    : "/dashboard"
+                  : "/"
+              }
+            >
+              V
+            </NextLink>
           )}
         </div>
         <motion.ul

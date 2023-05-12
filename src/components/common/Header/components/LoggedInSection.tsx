@@ -46,10 +46,12 @@ export const LoggedInSection = ({ image }: { image: string }) => {
       </button> */}
 
       <div className="relative ml-3">
-        <div className="flex items-center justify-between">
-          <div className="flex flex-col items-start justify-between text-primary">
+        <div className="flex items-end justify-between">
+          <div className="flex flex-col items-start justify-center text-primary">
             <span className="pr-4 text-xs font-semibold">{displayName}</span>
-            <span className="pr-4 text-[10px] font-medium capitalize">{user?.role}</span>
+            <span className="pr-4 text-[10px] font-medium">
+              {user?.role === "teacher" ? "Profesor" : "Estudiante"}
+            </span>
           </div>
           <button
             ref={openAccountMenuButtonRef}

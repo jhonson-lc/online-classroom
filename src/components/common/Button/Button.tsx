@@ -29,9 +29,10 @@ const Button = React.forwardRef(
     ref,
   ) => {
     const colors = {
-      [Variant.Primary]: "bg-primary/70 text-white px-4 py-2 rounded hover:bg-primary/80",
-      [Variant.Secondary]: "bg-transparent text-primary/80 px-4 py-2 rounded hover:text-primary",
-      [Variant.Danger]: "bg-red-500 text-white px-4 py-2 rounded hover:bg-red-400",
+      [Variant.Primary]: "bg-primary/70 text-white px-4 py-2 rounded-2xl hover:bg-primary/80",
+      [Variant.Secondary]:
+        "bg-transparent text-primary/80 px-4 py-2 rounded-2xl hover:text-primary",
+      [Variant.Danger]: "bg-red-500 text-white px-4 py-2 rounded-2xl hover:bg-red-400",
     };
     const As = as;
     return (

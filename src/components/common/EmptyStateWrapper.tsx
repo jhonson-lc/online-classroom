@@ -14,5 +14,17 @@ export const EmptyStateWrapper = ({
   EmptyComponent: ReactNode;
   NonEmptyComponent: ReactNode;
 }) => {
-  return <div>{isLoading ? <Spinner /> : isEmpty(data) ? EmptyComponent : NonEmptyComponent}</div>;
+  return (
+    <div>
+      {isLoading ? (
+        <div className="grid h-[500px] w-full place-items-center">
+          <Spinner />
+        </div>
+      ) : isEmpty(data) ? (
+        EmptyComponent
+      ) : (
+        NonEmptyComponent
+      )}
+    </div>
+  );
 };

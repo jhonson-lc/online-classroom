@@ -35,10 +35,10 @@ export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
       href: `/dashboard`,
     },
     {
-      id: "courses",
+      id: "browse",
       name: "Cursos y Tutorías",
       icon: TbFolders,
-      href: "/courses",
+      href: "/browse-classrooms",
     },
     {
       id: "messages",

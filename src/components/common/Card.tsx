@@ -29,7 +29,7 @@ export const Card = ({
       />
       <section className="px-6">
         <TitleAs className="mb-2 text-xl font-bold">{title}</TitleAs>
-        <p className="text-base text-gray-700 dark:text-black">{body}</p>
+        <p className="text-base text-gray-500">{body}</p>
       </section>
       <footer className="px-6 pb-6 pt-4">{children}</footer>
     </li>
