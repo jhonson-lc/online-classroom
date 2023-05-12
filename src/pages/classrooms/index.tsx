@@ -26,7 +26,6 @@ export default Classrooms;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await UnstableGetServerSession(context);
-  const user = await prisma.user.findUnique({ where: { id: session?.user?.id } });
 
   if (!session) {
     return {
@@ -35,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         permanent: false,
       },
     };
-  } else if (!user?.role) {
+  } else if (!session.user?.role) {
     return {
       redirect: {
         destination: "/welcome",

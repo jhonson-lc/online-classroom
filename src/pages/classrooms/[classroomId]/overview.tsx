@@ -3,7 +3,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { ClassroomOverviewScreen } from "../../../components/screens/classroom-overview/ClassroomOverviewScreen";
-import { HeaderLayout } from "../../../layouts/HeaderLayout";
+
+import DashboardLayout from "@/layouts/DashboardLayout";
 
 const ClassroomOverviewPage: NextPage = () => {
   const router = useRouter();
@@ -12,13 +13,13 @@ const ClassroomOverviewPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Classroom Overview</title>
+        <title>Visión general del curso</title>
         <meta content="all of the classrooms you've created as a teacher" name="description" />
       </Head>
 
-      <HeaderLayout>
+      <DashboardLayout>
         <ClassroomOverviewScreen classroomId={classroomId} />
-      </HeaderLayout>
+      </DashboardLayout>
     </>
   );
 };

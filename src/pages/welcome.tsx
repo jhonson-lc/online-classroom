@@ -11,7 +11,6 @@ import { Button, Variant } from "../components/common/Button/Button";
 import { HeaderLayout } from "../layouts/HeaderLayout";
 
 import { api } from "@/utils/api";
-import { prisma } from "@/server/db";
 
 const Welcome: NextPage = () => {
   const router = useRouter();
@@ -51,22 +50,22 @@ const Welcome: NextPage = () => {
             </p>
 
             <div className="mb-4 mt-10 flex items-center justify-center gap-8">
-              <div className="flex min-w-[200px] flex-col items-center gap-4 rounded-lg border-2 p-6">
+              <div className="flex min-w-[275px] flex-col items-center gap-4 rounded-xl border-2 p-6">
                 <Image
-                  alt="A picture of Richard Feynman(well known physics professor) teaching"
+                  alt="A picture of teacher"
                   className="object-cover object-top"
-                  height={100}
+                  height={150}
                   src={feynman}
                 />
                 <Button variant={Variant.Primary} onClick={setTeacherRole}>
                   Soy profesor
                 </Button>
               </div>
-              <div className="flex min-w-[200px] flex-col items-center gap-4 rounded-lg border-2 p-6">
+              <div className="flex min-w-[275px] flex-col items-center gap-4 rounded-xl border-2 p-6">
                 <Image
-                  alt="A picture of Richard Feynman(well known physics professor) teaching"
+                  alt="A picture of student"
                   className="object-cover"
-                  height={100}
+                  height={150}
                   src={student}
                 />
                 <Button variant={Variant.Primary} onClick={setStudentRole}>

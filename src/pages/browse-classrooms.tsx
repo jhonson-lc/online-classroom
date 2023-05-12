@@ -4,13 +4,13 @@ import Head from "next/head";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { BrowseClassroomsScreen } from "@/components/screens/browse-classrooms/BrowseClassroomsScreen";
 
-const Courses: NextPage = () => {
+const BrowseClassrooms: NextPage = () => {
   return (
     <>
       <Head>
         <title>Encuentra un curso o tutoría | Plataforma de educación virtual</title>
         <meta
-          content="sign up now for a teacher or a student account in order to access the website"
+          content="Regístrese ahora para obtener una cuenta de profesor o de alumno y poder acceder al sitio web"
           name="description"
         />
       </Head>
@@ -22,4 +22,4 @@ const Courses: NextPage = () => {
   );
 };
 
-export default Courses;
+export default BrowseClassrooms;

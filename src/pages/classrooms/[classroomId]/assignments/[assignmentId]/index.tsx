@@ -13,7 +13,7 @@ const ClassroomAssignmentPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Assignment {assignmentId}</title>
+        <title>Tarea {assignmentId}</title>
         <meta content="all of the classrooms you've created as a teacher" name="description" />
       </Head>
 

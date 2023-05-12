@@ -14,8 +14,8 @@ const ClassroomPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Classrooms</title>
-        <meta content="all of the classrooms you've created as a teacher" name="description" />
+        <title>Cursos y tutorías</title>
+        <meta content="Todas las clases que puedas crear" name="description" />
       </Head>
 
       <DashboardLayout>
