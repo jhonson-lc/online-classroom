@@ -45,7 +45,7 @@ export const ClassroomsScreen = () => {
       </MainHeading>
       <div>
         <EmptyStateWrapper
-          EmptyComponent={<EmptyStateClassrooms openClassroomModal={openClassroomModal} />}
+          EmptyComponent={<EmptyStateClassrooms />}
           NonEmptyComponent={<ClassroomsList classrooms={classrooms ?? []} />}
           data={classrooms}
           isLoading={isLoading}

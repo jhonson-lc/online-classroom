@@ -37,11 +37,11 @@ export const StudentAssignments = ({
   return (
     <div className="mt-6 flex flex-col gap-4">
       <div className="flex items-center gap-8">
-        <h2 className="text-2xl">Tus tareas ({totalAssignments} total)</h2>
+        <h2 className="text-md">Tus tareas ({totalAssignments} total)</h2>
       </div>
       <div className="overflow-x-auto">
         <Table
-          headers={["Número", "Grade", "Name", "Due Date", "Actions"]}
+          headers={["Número", "Nota", "Nombre", "Fecha Límite", "Acciones"]}
           rows={assignments.map((assignment, idx) => [
             assignment.number,
             getSubmission(assignment.id)?.grade ?? "N/A",
@@ -55,7 +55,7 @@ export const StudentAssignments = ({
                   className="link flex items-center gap-1"
                   href={`/classrooms/${classroomId}/assignments/${assignment.id}`}
                 >
-                  <EyeIcon /> View
+                  <EyeIcon /> Ver
                 </Link>
               </span>
             ) as ReactNode,

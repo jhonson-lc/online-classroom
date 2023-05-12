@@ -25,7 +25,7 @@ export const Students = ({
       </div>
       <div className="overflow-x-auto">
         <Table
-          headers={["Name", "Grade", "Actions"]}
+          headers={["Nombre", "Nota", "Acciones"]}
           rows={students.map((student) => [
             // eslint-disable-next-line react/jsx-key
             <div className="flex items-center gap-2">
@@ -43,7 +43,7 @@ export const Students = ({
             (
               <div className="flex gap-4">
                 <Link className="link flex items-center gap-1" href={`/students/${student.id}`}>
-                  <EyeIcon /> View
+                  <EyeIcon /> Ver
                 </Link>
               </div>
             ) as ReactNode,

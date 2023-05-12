@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 import { PencilSquare } from "../../common/Icons/PencilSquare";
 import { EmptyStateWrapper } from "../../common/EmptyStateWrapper";
@@ -64,15 +65,32 @@ export const ClassroomScreen = ({ classroomId }: { classroomId: string }) => {
   const showUnenroll = classrooms.data?.some(({ id }) => id === classroomId);
 
   const handleUnenroll = async () => {
-    if (confirm("Estás seguro que quieres salir de esta clase?")) {
-      await unenrollMutation.mutateAsync({ classroomId });
-      router.push("/dashboard");
-    }
+    toast("¿Estás seguro que quieres salir del curso?", {
+      style: {
+        backgroundColor: "#ef4444",
+        color: "#fff",
+        border: "none",
+      },
+      cancel: {
+        label: "Cancelar",
+        onClick: () => {
+          toast.dismiss();
+        },
+      },
+      action: {
+        label: "Confirmar",
+        onClick: async () => {
+          await unenrollMutation.mutateAsync({ classroomId });
+          router.push("/dashboard");
+        },
+      },
+      invert: true,
+    });
   };
 
   return (
     <>
-      <MainHeading title={classroom?.name ?? "loading..."}>
+      <MainHeading title={classroom?.name}>
         {hasAdminAccess && (
           <Button className="link inline-flex items-center" onClick={openEditClassroomModal}>
             <PencilSquare /> Editar
@@ -81,7 +99,7 @@ export const ClassroomScreen = ({ classroomId }: { classroomId: string }) => {
 
         {showUnenroll && (
           <Button variant={Variant.Danger} onClick={handleUnenroll}>
-            Salir de la clase
+            Salir del curso
           </Button>
         )}
       </MainHeading>

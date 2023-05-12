@@ -10,7 +10,7 @@ export const EnrolledCard = ({ classroom }: { classroom: Classroom }) => {
     <Card
       body={
         <span>
-          You has <a className="text-blue-400">1 assignment</a> due soon on 9/28/2022
+          Tienes <a className="text-blue-400">1 tarea</a> para el 28/9/2022
         </span>
       }
       title={classroom.name}
@@ -18,7 +18,7 @@ export const EnrolledCard = ({ classroom }: { classroom: Classroom }) => {
       <div className="flex justify-end">
         <Link href={`/classrooms/${classroom.id}`}>
           <Button color="primary" variant={Variant.Primary}>
-            View
+            Ver
           </Button>
         </Link>
       </div>

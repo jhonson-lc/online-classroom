@@ -7,12 +7,14 @@ import { Button, Variant } from "../../common/Button/Button";
 
 export const EmptyStateDashboard = () => {
   return (
-    <div className="mx-auto flex w-1/3 flex-col items-center justify-center gap-8">
+    <div className="mx-auto flex w-1/2 flex-col items-center justify-center gap-8 text-center">
       <Image alt="no classrooms found" height="300" src={teacherImage} width="300" />
-      <div className="text-2xl">You have no classrooms yet!</div>
+      <div className="text-xl text-gray-500">
+        No tienes ningún curso o tutoría. Busca uno para empezar a usar la plataforma.
+      </div>
       <Link passHref href="/browse-classrooms">
         <Button as="a" variant={Variant.Primary}>
-          Browse for Classrooms
+          Buscar cursos y tutorías
         </Button>
       </Link>
     </div>

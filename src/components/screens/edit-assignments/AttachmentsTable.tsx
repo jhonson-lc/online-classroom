@@ -6,27 +6,30 @@ import { TrashIcon } from "../../common/Icons/TrashIcon";
 import { Table } from "../../common/Table/Table";
 
 import { api } from "@/utils/api";
+import { useSession } from "@/libs/useSession";
 
 export const AttachmentsTable = ({
   attachments,
   onAttachmentDeleted,
 }: {
   attachments: Attachment[];
-  onAttachmentDeleted: () => void;
+  onAttachmentDeleted?: () => void;
 }) => {
   const deleteAttachment = api.Assignment.deleteAttachment.useMutation();
+  const session = useSession();
+  const isTeacher = session.data?.user?.role === "teacher";
 
   const handleDeleteAttachment = async (attachmentId: string) => {
-    if (!confirm("are you sure?")) return;
+    if (!confirm("Estás seguro?")) return;
     await deleteAttachment.mutateAsync({
       attachmentId,
     });
-    onAttachmentDeleted();
+    if (onAttachmentDeleted) onAttachmentDeleted();
   };
 
   return (
     <Table
-      headers={["Filename", "Actions"]}
+      headers={["Archivo", "Acciones"]}
       rows={attachments.map((attachment) => [
         attachment.filename,
         <span key={attachment.id} className="flex items-center gap-4">
@@ -38,15 +41,17 @@ export const AttachmentsTable = ({
             target="_blank"
           >
             <DownloadIcon />
-            Download
+            Descargar
           </a>
-          <LinkButton
-            variant={LinkButtonVariant.Danger}
-            onClick={() => handleDeleteAttachment(attachment.id)}
-          >
-            <TrashIcon />
-            Delete
-          </LinkButton>
+          {isTeacher && (
+            <LinkButton
+              variant={LinkButtonVariant.Danger}
+              onClick={() => handleDeleteAttachment(attachment.id)}
+            >
+              <TrashIcon />
+              Eliminar
+            </LinkButton>
+          )}
         </span>,
       ])}
     />
