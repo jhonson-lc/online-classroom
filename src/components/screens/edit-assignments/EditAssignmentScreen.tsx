@@ -5,7 +5,7 @@ import { useToggle } from "react-use";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 
-import { Button, Variant } from "../../common/Button/Button";
+import { Button } from "../../common/Button/Button";
 import { EmptyStateWrapper } from "../../common/EmptyStateWrapper";
 import { MainHeading } from "../../common/MainHeading";
 import { Badge, BadgeVariant } from "../../common/Badge";
@@ -15,9 +15,9 @@ import { UploadIcon } from "../../common/Icons/UploadIcon";
 import { TrashIcon } from "../../common/Icons/TrashIcon";
 
 import { EditDateModal } from "./EditDateModal";
-import { useFileUpload } from "./hooks/useFileUpload";
 import { EmptyStateAttachments } from "./EmptyStateAttachments";
 import { AttachmentsTable } from "./AttachmentsTable";
+import UploadAssigmentsDropzone from "./UploadAssigmentsDropzone";
 
 import { api } from "@/utils/api";
 import { FormGroup } from "@/components/common/form/FormGroup";
@@ -50,19 +50,6 @@ export const EditAssignmentScreen = ({
   const router = useRouter();
 
   useIsClassroomAdmin(classroomId);
-
-  const createPresignedUrl = api.Assignment.createPresignedUrl.useMutation();
-
-  const { file, fileRef, handleFileChange, uploadFile } = useFileUpload({
-    getUploadUrl: (fileToUpload: File) =>
-      createPresignedUrl.mutateAsync({
-        filename: fileToUpload.name,
-        assignmentId,
-      }),
-    onFileUploaded: () => {
-      attachmentsQuery.refetch();
-    },
-  });
 
   const deleteAssignment = api.Assignment.deleteAssignment.useMutation();
 
@@ -106,7 +93,7 @@ export const EditAssignmentScreen = ({
   };
 
   const handleDeleteAssignment = async () => {
-    if (!confirm("are you sure?")) return;
+    if (!confirm("Está seguro que desea eliminar?")) return;
     await deleteAssignment.mutateAsync({ assignmentId });
     router.push(`/classrooms/${classroomId}`);
   };
@@ -123,24 +110,24 @@ export const EditAssignmentScreen = ({
 
   return (
     <>
-      <MainHeading title={`Edit Assignment #${assignment?.number}`}>
+      <MainHeading title={`Editar tarea #${assignment?.number}`}>
         <Badge className="flex items-center gap-4" variant={BadgeVariant.Error}>
-          Due on {formattedDueDate}
+          Finaliza el {formattedDueDate}
           <LinkButton variant={LinkButtonVariant.Secondary} onClick={toggleIsEditDueDateModalOpen}>
-            <PencilSquare /> Edit
+            <PencilSquare /> Editar
           </LinkButton>
         </Badge>
 
         <LinkButton variant={LinkButtonVariant.Danger} onClick={handleDeleteAssignment}>
-          <TrashIcon /> Delete
+          <TrashIcon /> Eliminar
         </LinkButton>
       </MainHeading>
 
       <section>
-        <h2 className="mb-4 flex items-center gap-4 text-4xl">
-          Title
+        <h2 className="mb-4 flex items-center gap-4 text-2xl">
+          Tarea
           <LinkButton onClick={toggleIsEditingTitle}>
-            <PencilSquare /> Edit
+            <PencilSquare /> Editar
           </LinkButton>
         </h2>
         {isEditingTitle ? (
@@ -148,13 +135,16 @@ export const EditAssignmentScreen = ({
             className="mb-12 flex w-2/3 flex-col"
             onSubmit={handleSubmitTitle(handleSaveEditTitle)}
           >
-            <FormGroup label="Title" name="title">
-              <input className="mb-4" {...registerTitle("title")} />
+            <FormGroup label="Nombre" name="title">
+              <input
+                className="mb-2 rounded-md bg-slate-100 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+                {...registerTitle("title")}
+              />
             </FormGroup>
 
             <div className="flex justify-end">
               <Button className="w-fit">
-                <UploadIcon size="md" /> Save
+                <UploadIcon size="md" /> Guardar
               </Button>
             </div>
           </form>
@@ -164,10 +154,10 @@ export const EditAssignmentScreen = ({
       </section>
 
       <section>
-        <h2 className="mb-4 flex text-3xl">
-          Description
+        <h2 className="mb-4 flex text-2xl">
+          Descripción
           <LinkButton onClick={toggleIsEditingDescription}>
-            <PencilSquare /> Edit
+            <PencilSquare /> Editar
           </LinkButton>
         </h2>
 
@@ -176,13 +166,16 @@ export const EditAssignmentScreen = ({
             className="mb-12 flex w-2/3 flex-col"
             onSubmit={handleSubmit(handleSaveEditDescription)}
           >
-            <FormGroup label="Description" name="description">
-              <textarea className="mb-4 h-56" {...register("description")} />
+            <FormGroup label="Descripción" name="description">
+              <textarea
+                className="mb-2 h-56 rounded-md bg-slate-100 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
+                {...register("description")}
+              />
             </FormGroup>
 
             <div className="flex justify-end">
               <Button className="w-fit">
-                <UploadIcon size="md" /> Save
+                <UploadIcon size="md" /> Guardar
               </Button>
             </div>
           </form>
@@ -192,7 +185,7 @@ export const EditAssignmentScreen = ({
           </div>
         )}
 
-        <h2 className="mb-4 text-3xl">Attachments</h2>
+        <h2 className="mb-4 text-2xl">Archivos adjuntos</h2>
 
         <div className="mb-8">
           <EmptyStateWrapper
@@ -208,22 +201,11 @@ export const EditAssignmentScreen = ({
           />
         </div>
 
-        <div className="flex justify-end">
-          <form className="text-white" onSubmit={uploadFile}>
-            <label htmlFor="file-upload">Upload Attachment</label>
-            <input
-              ref={fileRef}
-              className="ml-4 text-white"
-              id="file-upload"
-              type="file"
-              onChange={handleFileChange}
-            />
-            {file && (
-              <Button className="ml-4" type="submit" variant={Variant.Primary}>
-                Upload
-              </Button>
-            )}
-          </form>
+        <div className="mt-6 w-full">
+          <UploadAssigmentsDropzone
+            assignmentId={assignmentId}
+            onFileUploaded={() => attachmentsQuery.refetch()}
+          />
         </div>
       </section>
 
