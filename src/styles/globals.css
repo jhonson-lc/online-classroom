@@ -7,16 +7,16 @@ html,
 body,
 document,
 #__next {
-  @apply h-max;
+  @apply h-max font-["Poppins"];
 }
 
 .link {
-  @apply hover:text-blue-500 text-blue-600 dark:text-blue-300 hover:dark:text-blue-200 cursor-pointer hover:underline;
+  @layer hover:text-blue-500 text-blue-600 dark:text-blue-300 hover:dark:text-blue-200 cursor-pointer hover:underline;
 }
 
 input,
 textarea {
-  @apply bg-white border p-2 dark:bg-gray-500;
+  @layer bg-white border p-2 dark:bg-gray-500;
 }
 
 .markdown h3 {
