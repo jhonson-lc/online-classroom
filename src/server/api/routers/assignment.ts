@@ -150,7 +150,7 @@ export const assignment = createTRPCRouter({
               ["content-length-range", 0, 1000000],
             ],
             Expires: 30,
-            Bucket: "online-classroom-uploads",
+            Bucket: BUCKET_NAME,
           },
           (err, signed) => {
             if (err) return reject(err);

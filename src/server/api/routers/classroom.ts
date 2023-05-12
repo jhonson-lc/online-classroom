@@ -135,7 +135,7 @@ export const classroom = createTRPCRouter({
         data: {
           name: input.name,
           dueDate: input.dueDate,
-          description: "This is a default assignment template",
+          description: "Está es una descripción de la tarea",
           classroomId: input.classroomId,
         },
       });
