@@ -35,12 +35,6 @@ export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
       href: `/dashboard`,
     },
     {
-      id: "my-classes",
-      name: "Mis clases",
-      icon: MdOutlineClass,
-      href: "/classrooms",
-    },
-    {
       id: "courses",
       name: "Cursos y Tutorías",
       icon: TbFolders,
@@ -62,7 +56,7 @@ export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
       id: "reportes",
       name: "Reportes",
       icon: BsFiles,
-      href: "/classrooms",
+      href: "/reports",
     },
     {
       id: "settings",
