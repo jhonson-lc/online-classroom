@@ -2,6 +2,22 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
+import { BUCKET_NAME } from "./submission";
+
+import { AWS } from "@/libs/aws";
+
+export const getObjectKey = ({
+  assignmentId,
+  attachmentId,
+}: {
+  assignmentId: string;
+  attachmentId: string;
+}) => {
+  return `assignments/${assignmentId}/${attachmentId}`;
+};
+
+const s3 = new AWS.S3();
+
 export const assignment = createTRPCRouter({
   updateDescription: publicProcedure
     .input(
@@ -70,8 +86,8 @@ export const assignment = createTRPCRouter({
       const downloadUrl = await s3.getSignedUrlPromise("getObject", {
         Bucket: BUCKET_NAME,
         Key: getObjectKey({
-          assignmentId: attachment?.assignmentId,
-          attachmentId: attachment?.id,
+          assignmentId: attachment?.assignmentId as string,
+          attachmentId: attachment?.id as string,
         }),
       });
 
