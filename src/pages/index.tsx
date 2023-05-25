@@ -77,7 +77,7 @@ const Home: NextPage = () => {
                     <div className="h-3 w-3 rounded-full border-2 border-white" />
                   </div>
                 </div>
-                <img src="https://cdn.devdojo.com/images/march2021/green-dashboard.jpg" />
+                <img src="../../assets/banner.png" />
               </div>
             </div>
           </div>
