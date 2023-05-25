@@ -2,7 +2,13 @@ import { useState } from "react";
 
 import { api } from "@/utils/api";
 
-export const useEditClassroom = ({ refreshClassroom, classroomId }) => {
+export const useEditClassroom = ({
+  refreshClassroom,
+  classroomId,
+}: {
+  refreshClassroom: () => void;
+  classroomId: string;
+}) => {
   const [showEditClassroomModal, setShowEditClassroomModal] = useState(false);
 
   const editClassroomMutation = api.Classroom.editClassroom.useMutation();
@@ -15,7 +21,7 @@ export const useEditClassroom = ({ refreshClassroom, classroomId }) => {
     setShowEditClassroomModal(false);
   };
 
-  const handleEditClassroomComplete = async (updatedClassroomData) => {
+  const handleEditClassroomComplete = async (updatedClassroomData: any) => {
     await editClassroomMutation.mutateAsync({
       ...updatedClassroomData,
       classroomId,

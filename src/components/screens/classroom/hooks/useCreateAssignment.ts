@@ -1,9 +1,8 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-export const useCreateAssignment = ({ classroomId }) => {
-  const [showCreateAssignmentModal, setShowCreateAssignmentModal] =
-    useState(false);
+export const useCreateAssignment = ({ classroomId }: { classroomId: string }) => {
+  const [showCreateAssignmentModal, setShowCreateAssignmentModal] = useState(false);
 
   const router = useRouter();
 
