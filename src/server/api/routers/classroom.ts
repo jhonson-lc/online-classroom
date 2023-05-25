@@ -122,6 +122,36 @@ export const classroom = createTRPCRouter({
         email: "",
       }));
     }),
+  getStudentsOfTeacher: publicProcedure.query(async ({ ctx }) => {
+    const userId = ctx.session?.user?.id;
+    const classrooms = await ctx.prisma.classroom.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        students: true,
+      },
+    });
+    const students = classrooms.flatMap((classroom) => classroom.students);
+    return students;
+  }),
+  getTeachersOfStudent: publicProcedure.query(async ({ ctx }) => {
+    const userId = ctx.session?.user?.id;
+    const classrooms = await ctx.prisma.classroom.findMany({
+      where: {
+        students: {
+          some: {
+            id: userId,
+          },
+        },
+      },
+      include: {
+        teacher: true,
+      },
+    });
+    const teachers = classrooms.map((classroom) => classroom.teacher);
+    return teachers;
+  }),
   createAssignment: publicProcedure
     .input(
       z.object({
@@ -174,6 +204,25 @@ export const classroom = createTRPCRouter({
               id: input.classroomId,
             },
           },
+        },
+      });
+      return classroom;
+    }),
+
+  editClassroom: publicProcedure
+    .input(
+      z.object({
+        classroomId: z.string(),
+        name: z.string(),
+      }),
+    )
+    .mutation(async ({ input, ctx }) => {
+      const classroom = await ctx.prisma.classroom.update({
+        where: {
+          id: input.classroomId,
+        },
+        data: {
+          name: input.name,
         },
       });
       return classroom;
