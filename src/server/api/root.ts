@@ -3,7 +3,8 @@ import { student } from "./routers/student";
 import { auth } from "./routers/auth";
 import { classroom } from "./routers/classroom";
 import { submission } from "./routers/submission";
-import { assignment } from "./routers/Assignment";
+import { assignment } from "./routers/assignment";
+import { message } from "./routers/message";
 
 import { createTRPCRouter } from "@/server/api/trpc";
 
@@ -19,6 +20,7 @@ export const appRouter = createTRPCRouter({
   Classroom: classroom,
   Submission: submission,
   Assignment: assignment,
+  Message: message,
 });
 
 // export type definition of API
