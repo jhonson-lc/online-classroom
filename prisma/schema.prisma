@@ -51,6 +51,8 @@ model User {
   enrolledIn    Classroom[]  @relation("EnrolledIn")
   submissions   Submission[]
   ratings       Rating[]
+  sendings      Messages[]   @relation("Sendings")
+  receivings    Messages[]   @relation("Receivings")
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
 }
@@ -120,4 +122,22 @@ model Rating {
   classroom   Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+enum StatusMessage {
+  ENVIADO
+  RECIBIDO
+}
+
+model Messages {
+  id         String        @id @default(cuid())
+  subject    String
+  message    String
+  status     StatusMessage @default(ENVIADO)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  author     User          @relation("Sendings", fields: [authorId], references: [id])
+  authorId   String
+  receiver   User          @relation("Receivings", fields: [receiverId], references: [id])
+  receiverId String
 }

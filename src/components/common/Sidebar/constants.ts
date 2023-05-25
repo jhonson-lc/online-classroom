@@ -2,7 +2,6 @@ import { RiHomeLine } from "react-icons/ri";
 import { MdOutlineClass } from "react-icons/md";
 import { TbFolders, TbSettings2 } from "react-icons/tb";
 import { FiMessageSquare } from "react-icons/fi";
-import { BsFiles, BsPeople } from "react-icons/bs";
 
 import { ILink } from "./types";
 
@@ -45,18 +44,6 @@ export const LOGGED_IN_LINKS: Record<string, ILink[]> = {
       name: "Mensajes",
       icon: FiMessageSquare,
       href: "/messages",
-    },
-    {
-      id: "teachers",
-      name: "Profesores",
-      icon: BsPeople,
-      href: "/teachers",
-    },
-    {
-      id: "reportes",
-      name: "Reportes",
-      icon: BsFiles,
-      href: "/reports",
     },
     {
       id: "settings",

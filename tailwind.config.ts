@@ -9,9 +9,9 @@ export default {
         secondary: "#2F58CD",
         white: "#ffffff",
       },
-    },
-    transitionProperty: {
-      width: "width",
+      transitionProperty: {
+        width: "width",
+      },
     },
   },
   plugins: [],
