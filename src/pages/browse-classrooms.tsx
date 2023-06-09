@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { BrowseClassroomsScreen } from "@/components/screens/browse-classrooms/BrowseClassroomsScreen";
+import { UnstableGetServerSession } from "@/libs/UnstableGetServerSession";
 
 const BrowseClassrooms: NextPage = () => {
   return (
@@ -21,5 +22,20 @@ const BrowseClassrooms: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await UnstableGetServerSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  } else {
+    return { props: {} };
+  }
+}
 
 export default BrowseClassrooms;

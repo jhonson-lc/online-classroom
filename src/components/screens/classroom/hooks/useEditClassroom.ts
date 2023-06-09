@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { api } from "@/utils/api";
 
@@ -21,12 +22,20 @@ export const useEditClassroom = ({
     setShowEditClassroomModal(false);
   };
 
-  const handleEditClassroomComplete = async (updatedClassroomData: any) => {
-    await editClassroomMutation.mutateAsync({
-      ...updatedClassroomData,
-      classroomId,
-    });
-    refreshClassroom();
+  const handleEditClassroomComplete = (updatedClassroomData: any) => {
+    toast.promise(
+      editClassroomMutation
+        .mutateAsync({
+          ...updatedClassroomData,
+          classroomId,
+        })
+        .then(() => refreshClassroom()),
+      {
+        loading: "Actualizando aula...",
+        success: "Aula actualizada correctamente",
+        error: "Error al actualizar aula",
+      },
+    );
     setShowEditClassroomModal(false);
   };
 

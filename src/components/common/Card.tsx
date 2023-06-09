@@ -20,7 +20,7 @@ export const Card = ({
     <li className="flex max-w-sm cursor-default flex-col gap-4 overflow-hidden rounded-lg bg-white shadow-md">
       <Image
         alt="a student"
-        height={140}
+        height={100}
         src={StudentImage}
         style={{
           objectFit: "cover",

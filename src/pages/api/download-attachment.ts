@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import { AWS } from "@/libs/aws";
 import { prisma } from "@/server/db";
-import { getObjectKey } from "@/server/api/routers/Assignment";
+import { getObjectKey } from "@/server/api/routers/assignment";
 import { BUCKET_NAME } from "@/server/api/routers/submission";
 const s3 = new AWS.S3();
 

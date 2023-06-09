@@ -5,7 +5,6 @@ import { ClassroomsScreen } from "../../components/screens/classrooms/Classrooms
 
 import { UnstableGetServerSession } from "@/libs/UnstableGetServerSession";
 import DashboardLayout from "@/layouts/DashboardLayout";
-import { prisma } from "@/server/db";
 
 const Classrooms: NextPage = () => {
   return (

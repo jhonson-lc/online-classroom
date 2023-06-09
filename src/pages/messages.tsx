@@ -23,7 +23,7 @@ const Messages: NextPage = () => {
 export async function getServerSideProps(context: any) {
   const session = await UnstableGetServerSession(context);
 
-  if (!session?.user) {
+  if (!session) {
     return {
       redirect: {
         destination: "/",

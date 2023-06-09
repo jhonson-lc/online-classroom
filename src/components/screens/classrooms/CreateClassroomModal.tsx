@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { Button, Variant } from "../../common/Button/Button";
 
@@ -29,10 +30,18 @@ export const CreateClassroomModal = ({
 
   const createClassroom = api.Classroom.createClassroom.useMutation();
 
-  const onSubmit = handleSubmit(async (data) => {
-    await createClassroom.mutateAsync({ name: data.name });
-    reset();
-    onComplete();
+  const onSubmit = handleSubmit((data) => {
+    toast.promise(
+      createClassroom.mutateAsync({ name: data.name }).then(() => {
+        reset();
+        onComplete();
+      }),
+      {
+        loading: "Creando curso...",
+        success: "Curso creado exitosamente",
+        error: "Error al crear el curso",
+      },
+    );
   });
 
   const handleCancel = () => {

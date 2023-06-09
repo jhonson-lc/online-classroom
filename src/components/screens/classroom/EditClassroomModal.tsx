@@ -1,5 +1,5 @@
 import { Classroom } from "@prisma/client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button, Variant } from "../../common/Button/Button";
@@ -26,9 +26,14 @@ export const EditClassroomModal = ({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<EditClassroomForm>({
-    defaultValues: classroom,
-  });
+  } = useForm<EditClassroomForm>();
+
+  useEffect(() => {
+    reset({
+      name: classroom.name,
+      description: classroom.description,
+    });
+  }, [classroom]);
 
   const onSubmit = handleSubmit(async (data) => {
     onComplete(data);

@@ -5,6 +5,7 @@ import React from "react";
 
 import { AssignmentScreen } from "@/components/screens/assignments/AssignmentScreen";
 import DashboardLayout from "@/layouts/DashboardLayout";
+import { UnstableGetServerSession } from "@/libs/UnstableGetServerSession";
 
 const ClassroomAssignmentPage: NextPage = () => {
   const router = useRouter();
@@ -23,5 +24,20 @@ const ClassroomAssignmentPage: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await UnstableGetServerSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  } else {
+    return { props: {} };
+  }
+}
 
 export default ClassroomAssignmentPage;

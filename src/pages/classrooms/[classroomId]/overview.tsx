@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { ClassroomOverviewScreen } from "../../../components/screens/classroom-overview/ClassroomOverviewScreen";
 
 import DashboardLayout from "@/layouts/DashboardLayout";
+import { UnstableGetServerSession } from "@/libs/UnstableGetServerSession";
 
 const ClassroomOverviewPage: NextPage = () => {
   const router = useRouter();
@@ -23,5 +24,20 @@ const ClassroomOverviewPage: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await UnstableGetServerSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  } else {
+    return { props: {} };
+  }
+}
 
 export default ClassroomOverviewPage;

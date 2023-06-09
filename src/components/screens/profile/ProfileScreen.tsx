@@ -41,7 +41,7 @@ export const ProfileScreen = () => {
       <MainHeading title="Tu Perfil" />
 
       {isDisplayed && (
-        <Alert message="Your profile has been sucessfully updated." onClose={dismiss} />
+        <Alert message="Tu perfil ha sido actualizado exitosamente!" onClose={dismiss} />
       )}
 
       <h2 className="mb-4 text-2xl">

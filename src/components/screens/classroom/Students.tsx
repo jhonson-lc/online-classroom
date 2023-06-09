@@ -14,6 +14,7 @@ export const Students = ({
     image: string | null;
     id: string;
     name: string | null;
+    email: string | null;
   }[];
 }) => {
   const totalStudents = students.length;
@@ -25,7 +26,7 @@ export const Students = ({
       </div>
       <div className="overflow-x-auto">
         <Table
-          headers={["Nombre", "Nota", "Acciones"]}
+          headers={["Nombre", "Email", "Acciones"]}
           rows={students.map((student) => [
             // eslint-disable-next-line react/jsx-key
             <div className="flex items-center gap-2">
@@ -39,7 +40,7 @@ export const Students = ({
               />{" "}
               {student.name}
             </div>,
-            "65% (D)",
+            <div key={student.id}>{student.email}</div>,
             (
               <div className="flex gap-4">
                 <Link className="link flex items-center gap-1" href={`/students/${student.id}`}>

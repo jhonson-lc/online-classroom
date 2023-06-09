@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useToggle } from "react-use";
+import { toast } from "sonner";
 
 import { Button, Variant } from "../../common/Button/Button";
 import { LinkButton, LinkButtonVariant } from "../../common/Button/LinkButton";
@@ -16,13 +17,21 @@ const GradeEditable = ({ submission, onUpdate }: { submission: any; onUpdate: an
 
   const updateGradeMutation = api.Submission.updateGrade.useMutation();
 
-  const handleGradeSave = async ({ grade }: { grade: any }) => {
-    await updateGradeMutation.mutateAsync({
-      grade: parseInt(grade),
-      submissionId: submission.id,
-    });
+  const handleGradeSave = ({ grade }: { grade: any }) => {
+    toast.promise(
+      updateGradeMutation
+        .mutateAsync({
+          grade: parseInt(grade),
+          submissionId: submission.id,
+        })
+        .then(() => onUpdate()),
+      {
+        loading: "Guardando nota...",
+        success: "Nota guardada exitosamente",
+        error: "Error al guardar la nota",
+      },
+    );
     toggleIsEditing();
-    onUpdate();
   };
 
   return (

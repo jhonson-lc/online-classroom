@@ -119,7 +119,6 @@ export const classroom = createTRPCRouter({
       });
       return classroom?.students.map((student) => ({
         ...student,
-        email: "",
       }));
     }),
   getStudentsOfTeacher: publicProcedure.query(async ({ ctx }) => {
